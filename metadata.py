@@ -1,7 +1,11 @@
 from pymediainfo import MediaInfo
+import ctypes
 import subprocess
 import json
 import os
+
+# Manually specify the path to the libmediainfo library
+ctypes.CDLL('/usr/local/lib/libmediainfo.0.dylib')
 
 def extract_metadata(video_path):
     media_info = MediaInfo.parse(video_path)
@@ -24,8 +28,8 @@ def assign_metadata(source_metadata_file, target_video_file):
     subprocess.run(command)
 
 # Paths to your videos
-iphone_video = 'path/to/iphone_video.mp4'
-downloaded_video = 'path/to/downloaded_video.mp4'
+iphone_video = 'IMG_0355.mov'
+downloaded_video = '0517.mp4'
 
 # Extract metadata from iPhone video
 metadata_file = extract_metadata(iphone_video)
